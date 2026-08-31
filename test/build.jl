@@ -113,11 +113,11 @@ end
     end
 
     kv = [
-        "GITHUB_REPOSITORY" => "rikhuijzer/PlutoStaticHTML.jl",
+        "GITHUB_REPOSITORY" => "JuliaPluto/PlutoStaticHTML.jl",
         "GITHUB_REF" => "refs/heads/main"
     ]
     withenv(kv...) do
-        url = "https://github.com/rikhuijzer/PlutoStaticHTML.jl/blob/main/docs/src/notebooks/example.jl"
+        url = "https://github.com/JuliaPluto/PlutoStaticHTML.jl/blob/main/docs/src/notebooks/example.jl"
         @test strip(PlutoStaticHTML._editurl_text(bopts, in_path)) == strip("""
             ```@meta
             EditURL = "$url"

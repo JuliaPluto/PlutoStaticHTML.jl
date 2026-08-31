@@ -18,7 +18,7 @@ let
         julia> build_notebooks(BuildOptions(dir))
         ```
 
-        See https://rikhuijzer.github.io/PlutoStaticHTML.jl/dev/ for the full documentation.
+        See https://JuliaPluto.github.io/PlutoStaticHTML.jl/dev/ for the full documentation.
         """
     @doc text PlutoStaticHTML
 end
