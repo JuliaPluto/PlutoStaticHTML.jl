@@ -20,7 +20,7 @@ end
 @doc """
     documenter_output
 
-Output format specifyier for Documenter.jl in [`BuildOptions`](@ref).
+Output format specifier for Documenter.jl in [`BuildOptions`](@ref).
 """
 documenter_output
 
