@@ -4,38 +4,26 @@ if isdefined(Base, :Experimental) && isdefined(Base.Experimental, Symbol("@max_m
     @eval Base.Experimental.@max_methods 1
 end
 
-import Base:
-    show,
-    string
-import Pluto:
-    PlutoRunner,
-    WorkspaceManager
+import Base: string
+import Pluto: PlutoRunner
 
 using Base64: base64encode
-using Dates
-using Gumbo: Gumbo, HTMLDocument, HTMLElement, parsehtml
-using LazyArtifacts
+using Dates: Dates, DateTime, Millisecond, now
+using Gumbo: Gumbo, HTMLElement, parsehtml
+using LazyArtifacts: LazyArtifacts
 using Pkg:
     Types.Context,
-    Types.UUID,
-    Operations
-using Pluto:
-    BondValue,
-    Cell,
-    CellOutput,
+    Types.UUID
+
+using Pluto: Cell,
     Configuration.CompilerOptions,
     Notebook,
     PkgCompat.dependencies,
     Pluto,
     PlutoRunner,
     ServerSession,
-    SessionActions,
-    WorkspaceManager,
-    generate_html,
-    load_notebook_nobackup,
-    update_dependency_cache!,
-    update_run!,
-    update_save_run!
+    SessionActions
+
 using RelocatableFolders: @path
 using SHA: sha256
 using TOML: parse as parsetoml

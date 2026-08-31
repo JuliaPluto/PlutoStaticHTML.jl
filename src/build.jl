@@ -10,12 +10,56 @@ function nothingstring(x::Union{Nothing,AbstractString})::Union{Nothing,String}
     return x isa Nothing ? x : string(x)::String
 end
 
+"""
+    OutputFormat
+
+Enum which allows to specify output format.
+"""
+OutputFormat
+
 @enum OutputFormat begin
     documenter_output
     franklin_output
     html_output
     pdf_output
 end
+
+@doc """
+    documenter_output::OutputFormat
+
+Value of enum [`OutputFormat`](@ref) to specify output to be used with Documenter.jl
+in [`BuildOptions`](@ref).
+"""
+documenter_output
+
+
+
+@doc """
+    franklin_output::OutputFormat
+
+Value of enum [`OutputFormat`](@ref) to specify output to be used with Franklin.jl
+in [`BuildOptions`](@ref).
+"""
+franklin_output
+
+@doc """
+    html_output::OutputFormat
+
+Value of enum [`OutputFormat`](@ref) to specify output to be used with HTML pages
+in [`BuildOptions`](@ref).
+"""
+html_output
+
+@doc """
+    pdf_output::OutputFormat
+
+Value of enum [`OutputFormat`](@ref) to specify output format as pdf
+im [`BuildOptions`](@ref).
+"""
+pdf_output
+
+
+
 
 const WRITE_FILES_DEFAULT = true
 const PREVIOUS_DIR_DEFAULT = nothing
