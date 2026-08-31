@@ -23,7 +23,7 @@ Therefore, this package implements:
 See the [documentation](https://JuliaPluto.github.io/PlutoStaticHTML.jl/dev) for more information.
 
 [ci-url]: https://github.com/JuliaData/DataFrames.jl/actions?query=workflow%3ACI+branch%3Amain
-[ci-img]: https://github.com/rikhuijzer/PlutoStaticHTML.jl/workflows/CI/badge.svg
+[ci-img]: https://github.com/JuliaPluto/PlutoStaticHTML.jl/workflows/CI/badge.svg
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
 [docs-dev-url]: https://JuliaPluto.github.io/PlutoStaticHTML.jl/dev
