@@ -7,8 +7,8 @@ using PrecompileTools: @setup_workload, @compile_workload
         state = State("hi")
         string(state)
 
-        PlutoStaticHTML._patch_with_terminal("let txt = ")
-        PlutoStaticHTML._replace_code_tabs("")
-        PlutoStaticHTML._add_documenter_css("")
+        _patch_with_terminal("let txt = ")
+        _replace_code_tabs("")
+        _add_documenter_css("")
     end
 end

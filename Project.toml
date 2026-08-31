@@ -1,7 +1,7 @@
 name = "PlutoStaticHTML"
 uuid = "359b1769-a58e-495b-9770-312e911026ad"
 authors = ["Rik Huijzer <github@huijzer.xyz>"]
-version = "8.0.0"
+version = "8.1"
 
 [deps]
 AbstractTrees = "1520ce14-60c1-5f80-bbc7-55ef81b5835c"
@@ -26,8 +26,8 @@ LazyArtifacts = "1"
 Pkg = "1"
 TOML = "1"
 SHA = "0.7"
-Pluto = "=1.0.1"
+Pluto = "~1.0"
 PrecompileTools = "1"
 RelocatableFolders = "0.3, 1"
 julia = "1.10"
-tectonic_jll = "0.9, 0.10, 0.11, 0.12, 0.13, 0.14, 0.15"
+tectonic_jll = "0.9, 0.10, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16"
