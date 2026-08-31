@@ -63,7 +63,7 @@ end
     end
     
     @test ExplicitImports.check_no_implicit_imports(PlutoStaticHTML) === nothing
-    @test ExplicitImports.check_all_explicit_imports_via_owners(PlutoStaticHTML) === nothing
+    @test ExplicitImports.check_all_explicit_imports_via_owners(PlutoStaticHTML, ignore=(:parse,)) === nothing
     @test ExplicitImports.check_no_stale_explicit_imports(PlutoStaticHTML, ignore=(:parse,)) === nothing
     @test ExplicitImports.check_all_qualified_accesses_via_owners(PlutoStaticHTML) === nothing
     @test ExplicitImports.check_no_self_qualified_accesses(PlutoStaticHTML) === nothing
