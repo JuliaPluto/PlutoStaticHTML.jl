@@ -169,7 +169,6 @@ For Documenter, see `docs/make.jl` in this repository.
 build_notebooks
 BuildOptions
 OutputOptions
-OutputFormat
 documenter_output
 franklin_output
 html_output

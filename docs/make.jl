@@ -41,7 +41,8 @@ prettyurls = get(ENV, "CI", nothing) == "true"
 format = HTML(; mathengine, prettyurls)
 modules = [PlutoStaticHTML]
 checkdocs = :none
-makedocs(; sitename, pages, format, modules, checkdocs)
+clean = false
+makedocs(; sitename, pages, format, modules, checkdocs, clean)
 
 deploydocs(;
     repo = "github.com/JuliaPluto/PlutoStaticHTML.jl.git"

@@ -6,16 +6,9 @@ function _is_cell_done(cell)
     end
 end
 
-function nothingstring(x::Union{Nothing,AbstractString})::Union{Nothing,String}
+function nothingstring(x::Union{Nothing, AbstractString})::Union{Nothing, String}
     return x isa Nothing ? x : string(x)::String
 end
-
-"""
-    OutputFormat
-
-Enum which allows to specify output format.
-"""
-OutputFormat
 
 @enum OutputFormat begin
     documenter_output
@@ -25,40 +18,33 @@ OutputFormat
 end
 
 @doc """
-    documenter_output::OutputFormat
+    documenter_output
 
-Value of enum [`OutputFormat`](@ref) to specify output to be used with Documenter.jl
-in [`BuildOptions`](@ref).
+Output format specifyier for Documenter.jl in [`BuildOptions`](@ref).
 """
 documenter_output
 
 
-
 @doc """
-    franklin_output::OutputFormat
+    franklin_output
 
-Value of enum [`OutputFormat`](@ref) to specify output to be used with Franklin.jl
-in [`BuildOptions`](@ref).
+Output format specifier for Franklin.jl in [`BuildOptions`](@ref).
 """
 franklin_output
 
 @doc """
-    html_output::OutputFormat
+    html_output
 
-Value of enum [`OutputFormat`](@ref) to specify output to be used with HTML pages
-in [`BuildOptions`](@ref).
+Output format specifier for HTML in [`BuildOptions`](@ref).
 """
 html_output
 
 @doc """
-    pdf_output::OutputFormat
+    pdf_output
 
-Value of enum [`OutputFormat`](@ref) to specify output format as pdf
-im [`BuildOptions`](@ref).
+Output format specifier for pdf in [`BuildOptions`](@ref).
 """
 pdf_output
-
-
 
 
 const WRITE_FILES_DEFAULT = true
@@ -118,22 +104,22 @@ Arguments:
 struct BuildOptions
     dir::String
     write_files::Bool
-    previous_dir::Union{Nothing,String}
+    previous_dir::Union{Nothing, String}
     output_format::Vector{OutputFormat}
     add_documenter_css::Bool
     use_distributed::Bool
-    compiler_options::Union{Nothing,CompilerOptions}
+    compiler_options::Union{Nothing, CompilerOptions}
     max_concurrent_runs::Int
 
     function BuildOptions(
             dir::AbstractString;
-            write_files::Bool=WRITE_FILES_DEFAULT,
-            previous_dir::Union{Nothing,AbstractString}=PREVIOUS_DIR_DEFAULT,
-            output_format::Union{OutputFormat,Vector{OutputFormat}}=OUTPUT_FORMAT_DEFAULT,
-            add_documenter_css::Bool=ADD_DOCUMENTER_CSS_DEFAULT,
-            use_distributed::Bool=USE_DISTRIBUTED_DEFAULT,
-            compiler_options::Union{Nothing,CompilerOptions}=COMPILER_OPTIONS_DEFAULT,
-            max_concurrent_runs::Int=MAX_CONCURRENT_RUNS_DEFAULT
+            write_files::Bool = WRITE_FILES_DEFAULT,
+            previous_dir::Union{Nothing, AbstractString} = PREVIOUS_DIR_DEFAULT,
+            output_format::Union{OutputFormat, Vector{OutputFormat}} = OUTPUT_FORMAT_DEFAULT,
+            add_documenter_css::Bool = ADD_DOCUMENTER_CSS_DEFAULT,
+            use_distributed::Bool = USE_DISTRIBUTED_DEFAULT,
+            compiler_options::Union{Nothing, CompilerOptions} = COMPILER_OPTIONS_DEFAULT,
+            max_concurrent_runs::Int = MAX_CONCURRENT_RUNS_DEFAULT
         )
         if !(output_format isa Vector)
             output_format = OutputFormat[output_format]
@@ -166,6 +152,7 @@ function _wait_for_notebook_done(nb::Notebook)
     while !_notebook_done(nb)
         sleep(1)
     end
+    return
 end
 
 function extract_previous_output(html::AbstractString)::String
@@ -189,7 +176,7 @@ end
     - Contents of a Franklin/Documenter Markdown file.
 """
 struct Previous
-    state::Union{State,Nothing}
+    state::Union{State, Nothing}
     text::String
 end
 
@@ -277,11 +264,11 @@ function _wrap_documenter_output(html::String, bopts::BuildOptions, in_path::Str
     end
     editurl = _editurl_text(bopts, in_path)
     return """
-        ```@raw html
-        $(_fix_header_links(html))
-        ```
-        $editurl
-        """
+    ```@raw html
+    $(_fix_header_links(html))
+    ```
+    $editurl
+    """
 end
 
 function _outcome2text(session, prevs::Vector{Previous}, in_path::String, bopts, oopts)::Vector{String}
@@ -301,7 +288,7 @@ end
 
 function _inject_script(html, script)
     l = length(END_IDENTIFIER)
-    without_end = html[1:end-l]
+    without_end = html[1:(end - l)]
     return string(without_end, '\n', script, '\n', END_IDENTIFIER)
 end
 
@@ -354,13 +341,13 @@ function _outcome2text(session, nb::Notebook, in_path::String, bopts, oopts)::Ve
     # The sleep avoids `AssertionError: will_run_code(notebook)`
     @async begin
         sleep(5)
-        SessionActions.shutdown(session, nb; verbose=false)
+        SessionActions.shutdown(session, nb; verbose = false)
     end
 
     return texts
 end
 
-const TimeState = Dict{String,DateTime}
+const TimeState = Dict{String, DateTime}
 
 _time_init!(time_state::TimeState, in_file::String) = setindex!(time_state, now(), in_file)
 _time_elapsed(time_state::TimeState, in_file::String) = now() - time_state[in_file]
@@ -380,7 +367,7 @@ function _pretty_elapsed(t::Millisecond)
 end
 
 "Return multiple previous files (caches) or nothing when a new evaluation is needed."
-function _prevs(bopts::BuildOptions, dir, in_file)::Union{Vector{Previous},Nothing}
+function _prevs(bopts::BuildOptions, dir, in_file)::Union{Vector{Previous}, Nothing}
     prevs = Previous[]
     for output_format in bopts.output_format
         prev = Previous(bopts.previous_dir, output_format, in_file)
@@ -395,8 +382,8 @@ end
 function run_notebook!(
         path::AbstractString,
         session::ServerSession;
-        compiler_options::Union{Nothing,CompilerOptions}=nothing,
-        run_async::Bool=false
+        compiler_options::Union{Nothing, CompilerOptions} = nothing,
+        run_async::Bool = false
     )
     # Avoid changing pwd.
     previous_dir = pwd()
@@ -518,9 +505,9 @@ julia> build_notebooks(bopts, files, oopts);
 function build_notebooks(
         bopts::BuildOptions,
         files,
-        oopts::OutputOptions=OutputOptions();
-        session=ServerSession()
-    )::Dict{String,Vector{String}}
+        oopts::OutputOptions = OutputOptions();
+        session = ServerSession()
+    )::Dict{String, Vector{String}}
 
     time_state = TimeState()
     func = bopts.use_distributed ? _evaluate_parallel : _evaluate_sequential
@@ -528,8 +515,8 @@ function build_notebooks(
     X = func(bopts, oopts, session, files, time_state)::Vector
 
     # One `String` for every build_output.
-    outputs = Dict{String,Vector{String}}()
-    for (in_file, x::Union{Vector{Previous},Notebook}) in zip(files, X)
+    outputs = Dict{String, Vector{String}}()
+    for (in_file, x::Union{Vector{Previous}, Notebook}) in zip(files, X)
         in_path = joinpath(bopts.dir, in_file)
         text = _outcome2text(session, x, in_path, bopts, oopts)
         outputs[in_file] = text
@@ -539,13 +526,13 @@ function build_notebooks(
 end
 
 function _is_pluto_file(path::AbstractString)::Bool
-    first(eachline(string(path))) == "### A Pluto.jl notebook ###"
+    return first(eachline(string(path))) == "### A Pluto.jl notebook ###"
 end
 
 function build_notebooks(
         bopts::BuildOptions,
-        oopts::OutputOptions=OutputOptions()
-    )::Dict{String,Vector{String}}
+        oopts::OutputOptions = OutputOptions()
+    )::Dict{String, Vector{String}}
     dir = bopts.dir
     files = filter(readdir(dir)) do file
         path = joinpath(dir, file)
