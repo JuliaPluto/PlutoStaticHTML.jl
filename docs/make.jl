@@ -16,7 +16,7 @@ Run all Pluto notebooks (".jl" files) in `NOTEBOOK_DIR`.
 """
 function build()
     println("Building notebooks in $NOTEBOOK_DIR")
-    oopts = OutputOptions(; append_build_context=true)
+    oopts = OutputOptions(; append_build_context = true)
     output_format = documenter_output
     bopts = BuildOptions(NOTEBOOK_DIR; output_format)
     build_notebooks(bopts, oopts)
@@ -32,7 +32,7 @@ sitename = "PlutoStaticHTML.jl"
 pages = [
     "PlutoStaticHTML" => "index.md",
     "Example notebook" => "notebooks/example.md",
-    "`with_terminal`" => "with_terminal.md"
+    "`with_terminal`" => "with_terminal.md",
 ]
 
 # Using MathJax3 since Pluto uses that engine too.
@@ -44,8 +44,5 @@ checkdocs = :none
 makedocs(; sitename, pages, format, modules, checkdocs)
 
 deploydocs(;
-    branch="docs-output",
-    devbranch="main",
-    repo="github.com/rikhuijzer/PlutoStaticHTML.jl.git",
-    push_preview=false
+    repo = "github.com/JuliaPluto/PlutoStaticHTML.jl.git"
 )
