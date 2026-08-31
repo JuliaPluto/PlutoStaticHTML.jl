@@ -20,13 +20,13 @@ Therefore, this package implements:
 3. Throwing an error if something goes wrong.
     This avoids publishing broken notebooks 🎯.
 
-See the [documentation](https://JuliaPluto.github.io/PlutoStaticHTML.jl/dev) for more information.
+See the [documentation](https://JuliaPluto.github.io/PlutoStaticHTML.jl) for more information.
 
 [ci-url]: https://github.com/JuliaData/DataFrames.jl/actions?query=workflow%3ACI+branch%3Amain
 [ci-img]: https://github.com/JuliaPluto/PlutoStaticHTML.jl/workflows/CI/badge.svg
 
 [docs-dev-img]: https://img.shields.io/badge/docs-dev-blue.svg
-[docs-dev-url]: https://JuliaPluto.github.io/PlutoStaticHTML.jl/dev
+[docs-dev-url]: https://JuliaPluto.github.io/PlutoStaticHTML.jl
 
 [blue-img]: https://img.shields.io/badge/code%20style-blue-4495d1.svg
 [blue-url]: https://github.com/invenia/BlueStyle
