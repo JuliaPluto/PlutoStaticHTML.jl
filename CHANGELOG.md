@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [8.2.0] - 2026-10-28
+- Add Pluto 1.1 compatibility 
+
 ## [8.2.0] - 2026-09-09
 
 ### Features
